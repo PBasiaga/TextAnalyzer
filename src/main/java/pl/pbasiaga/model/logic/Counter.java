@@ -20,8 +20,19 @@ public class Counter {
 
     public TextInformation calculateTextInformation() {
         TextInformation textInformation = new TextInformation();
+        textInformation.setLongestWord(findLongestWord());
 
         return textInformation;
+    }
+
+    private String findLongestWord() {
+
+        String longestWord = words.stream()
+                .max((word1, word2) -> word1.length() - word2.length())
+                .map(Object::toString)
+                .orElse("");
+
+        return longestWord;
     }
 
 
