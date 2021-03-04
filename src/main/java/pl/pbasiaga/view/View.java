@@ -6,6 +6,24 @@ import java.util.Scanner;
 
 public class View {
 
+    public int showStartingMenuAndGetSelectedPosition() {
+
+        int option;
+
+        try {
+            System.out.println("Enter a number: ");
+            System.out.println("[1] Choose file to analyze.");
+            System.out.println("[0] Exit.");
+            System.out.println();
+            Scanner scanner = new Scanner(System.in);
+            option = scanner.nextInt();
+
+        } catch (InputMismatchException e) {
+            option = -1;
+        }
+        return option;
+    }
+
     public String getFilePath() {
         System.out.println("Enter file's path: ");
         Scanner scanner = new Scanner(System.in);
@@ -63,5 +81,14 @@ public class View {
     public void showIncorrectNumberInformation() {
         System.out.println("Use only valid numbers.");
         System.out.println();
+    }
+
+    public void showNoFileFoundInformation() {
+        System.out.println("Such file does not exist or given directory was incorrect.");
+        System.out.println();
+    }
+
+    public void showGoodBye() {
+        System.out.println("Goodbye.");
     }
 }

@@ -24,6 +24,32 @@ public class Controller {
         this.view = new View();
     }
 
+    public void start() {
+        int menuValue = 1;
+        while (menuValue != 0) {
+            menuValue = view.showStartingMenuAndGetSelectedPosition();
+
+            switch (menuValue) {
+
+                case 1:
+                    try {
+                        prepareFiles();
+                        handleFileMenu();
+                    } catch (FileNotFoundException e) {
+                        view.showNoFileFoundInformation();
+                        continue;
+                    }
+                    break;
+                case 0:
+                    view.showGoodBye();
+                    return;
+                default:
+                    view.showIncorrectNumberInformation();
+                    break;
+            }
+        }
+    }
+
     private void prepareFiles() throws FileNotFoundException {
         String filename = view.getFilePath();
         List<String> words = fileReader.getWordsFromFile(filename);
