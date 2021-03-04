@@ -21,6 +21,7 @@ public class Counter {
     public TextInformation calculateTextInformation() {
         TextInformation textInformation = new TextInformation();
         textInformation.setLongestWord(findLongestWord());
+        textInformation.setWordCount(getWordCount());
 
         return textInformation;
     }
@@ -33,6 +34,11 @@ public class Counter {
                 .orElse("");
 
         return longestWord;
+    }
+
+    private int getWordCount() {
+
+        return words.size();
     }
 
 
