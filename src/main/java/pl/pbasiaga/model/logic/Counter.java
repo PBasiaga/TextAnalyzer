@@ -21,11 +21,17 @@ public class Counter {
     public TextInformation calculateTextInformation() {
         TextInformation textInformation = new TextInformation();
         textInformation.setWordCount(getWordCount());
+        textInformation.setAverageNumberOfLettersInWord(countAverageNumberOfLettersInWord());
         textInformation.setLongestWord(findLongestWord());
         textInformation.setLetterOccurrences(countLetterOccurrences());
 
 
         return textInformation;
+    }
+
+    private int getWordCount() {
+
+        return words.size();
     }
 
     private String findLongestWord() {
@@ -38,9 +44,21 @@ public class Counter {
         return longestWord;
     }
 
-    private int getWordCount() {
 
-        return words.size();
+    private double countAverageNumberOfLettersInWord() {
+
+        double averageNumberOfLettersInWord;
+
+        if (words.size() == 0) {
+            averageNumberOfLettersInWord = 0;
+        } else {
+            int letters = 0;
+            for (String word : words) {
+                letters += word.length();
+            }
+            averageNumberOfLettersInWord =  letters / (double) words.size();
+        }
+        return averageNumberOfLettersInWord;
     }
 
     private HashMap<Character, Integer> countLetterOccurrences() {
